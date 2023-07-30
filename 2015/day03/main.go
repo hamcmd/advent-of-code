@@ -19,9 +19,9 @@ func main() {
 
 	var numberOfHouses int
 	if questionPart == 1 {
-		numberOfHouses = housesVisitedBySanta(content)
+		numberOfHouses = housesVisitedBySanta(&content)
 	} else {
-		numberOfHouses = housesVisitedBySantaAndBot(content)
+		numberOfHouses = housesVisitedBySantaAndBot(&content)
 	}
 
 	fmt.Println(numberOfHouses)
@@ -32,12 +32,12 @@ func main() {
 //////  coordinates after moving or coordinates visited next = (x + a, y + b)
 //////  number of unique coordinates visited = number of houses visisted
 
-func housesVisitedBySanta(input string) int {
+func housesVisitedBySanta(input *string) int {
 	directions := getCoordinateMapping()
 	coordinatesVisted := map[[2]int]int{{}: 1}
 	currentCoordinates := [2]int{0, 0}
 
-	for _, val := range strings.Split(input, "") {
+	for _, val := range strings.Split(*input, "") {
 		directionToGo := directions[string(val)]
 		nextCoorindates := [2]int{
 			directionToGo[0] + currentCoordinates[0],
@@ -55,13 +55,13 @@ func housesVisitedBySanta(input string) int {
 //// santa would visit coordinates at all odd positions
 //// bot will be going to all the coordinates at even position
 
-func housesVisitedBySantaAndBot(input string) int {
+func housesVisitedBySantaAndBot(input *string) int {
 	directions := getCoordinateMapping()
 	coordinatesVisted := map[[2]int]int{{}: 2}
 	currentSantaCoordinates := [2]int{0, 0}
 	currentBotCoordinates := [2]int{0, 0}
 
-	for index, val := range strings.Split(input, "") {
+	for index, val := range strings.Split(*input, "") {
 		directionToGo := directions[string(val)]
 		if index%2 == 0 {
 			nextCoorindates := [2]int{

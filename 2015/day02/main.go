@@ -19,7 +19,7 @@ func main() {
 	}
 
 	if questionPart == 1 {
-		wrappingPaperRequired, err := calculateWrappingPaperRequired(content)
+		wrappingPaperRequired, err := calculateWrappingPaperRequired(&content)
 
 		if err != nil {
 			log.Fatal(err)
@@ -29,7 +29,7 @@ func main() {
 		return
 	}
 
-	ribbonRequired, err := calculateRibbonRequired(content)
+	ribbonRequired, err := calculateRibbonRequired(&content)
 
 	if err != nil {
 		log.Fatal(err)
@@ -38,10 +38,10 @@ func main() {
 	fmt.Println(ribbonRequired)
 }
 
-func calculateWrappingPaperRequired(stringDimensions string) (int, error) {
+func calculateWrappingPaperRequired(stringDimensions *string) (int, error) {
 	var totalSqFt int
 
-	for _, value := range strings.Split(stringDimensions, "\n") {
+	for _, value := range strings.Split(*stringDimensions, "\n") {
 		var length, width, height int
 
 		_, err := fmt.Sscanf(value, "%dx%dx%d", &length, &width, &height)
@@ -62,10 +62,10 @@ func calculateWrappingPaperRequired(stringDimensions string) (int, error) {
 	return totalSqFt, nil
 }
 
-func calculateRibbonRequired(stringDimensions string) (int, error) {
+func calculateRibbonRequired(stringDimensions *string) (int, error) {
 	var totalSqFtOfRibbon int
 
-	for _, value := range strings.Split(stringDimensions, "\n") {
+	for _, value := range strings.Split(*stringDimensions, "\n") {
 		var length, width, height int
 
 		_, err := fmt.Sscanf(value, "%dx%dx%d", &length, &width, &height)
