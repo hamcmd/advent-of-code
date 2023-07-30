@@ -15,13 +15,13 @@ func main() {
 		log.Fatal(err)
 	}
 
-	level := getLevel(input, 2)
+	level := getLevel(&input, 2)
 	fmt.Println(level)
 }
 
-func getLevel(input string, questionPart int) int {
+func getLevel(input *string, questionPart int) int {
 	var floor int
-	for index, char := range input {
+	for index, char := range *input {
 		if string(char) == "(" {
 			floor++
 		} else {
