@@ -1,5 +1,7 @@
 package main
 
+//https://adventofcode.com/2015/day/4/answer
+
 import (
 	"crypto/md5"
 	"encoding/hex"
