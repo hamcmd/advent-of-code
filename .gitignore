@@ -6,6 +6,8 @@
 *.launch
 .settings/
 *.sublime-workspace
+.fleet
+.vscode
 
 # IDE - VSCode
 .vscode/*
